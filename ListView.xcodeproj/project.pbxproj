@@ -15,6 +15,11 @@
 		184C198023327B4A0087AD83 /* ListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C197F23327B4A0087AD83 /* ListViewTests.swift */; };
 		184C198B23327B4A0087AD83 /* ListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C198A23327B4A0087AD83 /* ListViewUITests.swift */; };
 		184C199C233293680087AD83 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C199B233293680087AD83 /* ListViewController.swift */; };
+		184C199E2332944F0087AD83 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C199D2332944F0087AD83 /* ListViewModel.swift */; };
+		184C19A12332948A0087AD83 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C19A02332948A0087AD83 /* Network.swift */; };
+		184C19A3233294C30087AD83 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C19A2233294C30087AD83 /* Endpoint.swift */; };
+		184C19A5233295750087AD83 /* APIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C19A4233295750087AD83 /* APIList.swift */; };
+		184C19A7233295CC0087AD83 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C19A6233295CC0087AD83 /* Response.swift */; };
 		97A6AA5B17486D963F188A95 /* Pods_ListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E6B36100E3D37C7F8AB4C0 /* Pods_ListView.framework */; };
 		D6872824C0A495B37F616798 /* Pods_ListViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD4E048C2663945A4E9E0EB /* Pods_ListViewUITests.framework */; };
 		F7C54A26A4F6B3C7FE9E155C /* Pods_ListViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0FB1985B1B341F38550621 /* Pods_ListViewTests.framework */; };
@@ -53,6 +58,11 @@
 		184C198A23327B4A0087AD83 /* ListViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewUITests.swift; sourceTree = "<group>"; };
 		184C198C23327B4A0087AD83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		184C199B233293680087AD83 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		184C199D2332944F0087AD83 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		184C19A02332948A0087AD83 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		184C19A2233294C30087AD83 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		184C19A4233295750087AD83 /* APIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIList.swift; sourceTree = "<group>"; };
+		184C19A6233295CC0087AD83 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		4913D149DE783DF2A9E659F5 /* Pods-ListViewUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListViewUITests.debug.xcconfig"; path = "Target Support Files/Pods-ListViewUITests/Pods-ListViewUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		686146D5C827C582E7FA74A0 /* Pods-ListViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListViewUITests.release.xcconfig"; path = "Target Support Files/Pods-ListViewUITests/Pods-ListViewUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F0FB1985B1B341F38550621 /* Pods_ListViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ListViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +139,7 @@
 		184C196623327B490087AD83 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				184C199F233294600087AD83 /* Network */,
 				184C199A233291DE0087AD83 /* View Model */,
 				184C1999233291B90087AD83 /* View */,
 				184C196723327B490087AD83 /* AppDelegate.swift */,
@@ -170,8 +181,20 @@
 		184C199A233291DE0087AD83 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				184C199D2332944F0087AD83 /* ListViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		184C199F233294600087AD83 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				184C19A02332948A0087AD83 /* Network.swift */,
+				184C19A2233294C30087AD83 /* Endpoint.swift */,
+				184C19A4233295750087AD83 /* APIList.swift */,
+				184C19A6233295CC0087AD83 /* Response.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		BB43B22539B0C1041FA5272F /* Frameworks */ = {
@@ -405,8 +428,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184C19A7233295CC0087AD83 /* Response.swift in Sources */,
+				184C19A12332948A0087AD83 /* Network.swift in Sources */,
 				184C197023327B490087AD83 /* ListView.xcdatamodeld in Sources */,
+				184C19A5233295750087AD83 /* APIList.swift in Sources */,
 				184C199C233293680087AD83 /* ListViewController.swift in Sources */,
+				184C199E2332944F0087AD83 /* ListViewModel.swift in Sources */,
+				184C19A3233294C30087AD83 /* Endpoint.swift in Sources */,
 				184C196823327B490087AD83 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
