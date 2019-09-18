@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ListViewController.swift
 //  ListView
 //
 //  Created by Ravi on 18/09/19.
@@ -15,15 +15,14 @@ enum ActivityState {
     case loadingRemote
 }
 
-class ViewController: UIViewController {
-
+class ListViewController: UIViewController {
     var reachability: Reachability!
-
+    
     @IBOutlet weak var tableViewTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-
+    
     var state: ActivityState = .inactive {
         didSet {
             switch state {
@@ -46,7 +45,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reachability = Reachability()
