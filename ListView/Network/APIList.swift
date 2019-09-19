@@ -9,18 +9,25 @@
 import Foundation
 
 enum APIList {
-    case allContacts(contacts: String)
+    case allModerators(moderators: ModeratorParams)
 }
 
 extension APIList: Endpoint {
     var baseURL: URL {
-        return URL(string: "http://gojek-contacts-app.herokuapp.com")!
+        return URL(string: "http://api.stackexchange.com/2.2/")!
     }
     
     var path: String {
         switch self {
-        case .allContacts(let contacts):
-            return "/\(contacts).json"
+        case .allModerators( _):
+            return "users/moderators"
+        }
+    }
+    
+    var paramters: [String: Any]? {
+        switch self {
+        case .allModerators(let params):
+            return ["order": params.order, "sort": params.sort, "filter": params.filter, "page": params.pageCount, "site": params.site]
         }
     }
 }

@@ -17,7 +17,7 @@ enum ActivityState {
 
 class ListViewController: UIViewController {
     var reachability: Reachability!
-    
+    private var listViewModel =  ListViewModel()
     @IBOutlet weak var tableViewTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -50,6 +50,25 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         self.reachability = Reachability()
         self.state = .loadingLocal
+        fetchModerators()
+    }
+    
+    func fetchModerators() {
+        listViewModel.fetchModerators {
+            DispatchQueue.main.async {
+                self.state = .inactive
+            }
+        }
+    }
+}
+
+extension ListViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
 }

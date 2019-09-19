@@ -20,10 +20,7 @@ struct Networking {
         var request = URLRequest(url: urlRequest)
         request.httpMethod = method
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        if method == "PUT" || method == "POST" {
-            request.httpBody = params
-        }
-        
+
         let urlSession = session.dataTask(with: request) { (data, _, error) in
             if error != nil {
                 return
