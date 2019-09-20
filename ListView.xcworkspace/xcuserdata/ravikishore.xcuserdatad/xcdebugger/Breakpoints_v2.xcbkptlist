@@ -9,14 +9,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ListView/Network/Network.swift"
-            timestampString = "590577514.019845"
+            filePath = "ListView/View Model/ListViewModel.swift"
+            timestampString = "590604323.2677211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "performNetworkTask(endpoint:type:method:params:completion:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "fetchModerators(completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ListView.Result&lt;ListView.Moderators, ListView.DataResponseError&gt;) -&gt; () in ListView.ListViewModel.fetchModerators(completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "ListView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ravikishore/Documents/WorkSpace/ListView/ListView/View%20Model/ListViewModel.swift"
+                  timestampString = "590604323.395149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "549">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ListView.Result&lt;ListView.Moderators, ListView.DataResponseError&gt;) -&gt; () in ListView.ListViewModel.fetchModerators(completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "ListView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ravikishore/Documents/WorkSpace/ListView/ListView/View%20Model/ListViewModel.swift"
+                  timestampString = "590604323.402324"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "587">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ListView.Result&lt;ListView.Moderators, ListView.DataResponseError&gt;) -&gt; () in ListView.ListViewModel.fetchModerators(completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "ListView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ravikishore/Documents/WorkSpace/ListView/ListView/View%20Model/ListViewModel.swift"
+                  timestampString = "590604323.405542"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "934">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

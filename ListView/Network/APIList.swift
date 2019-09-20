@@ -24,7 +24,7 @@ extension APIList: Endpoint {
         }
     }
     
-    var paramters: [String: Any]? {
+    var paramters: [String: String]? {
         switch self {
         case .allModerators(let params):
             return ["order": params.order, "sort": params.sort, "filter": params.filter, "page": params.pageCount, "site": params.site]

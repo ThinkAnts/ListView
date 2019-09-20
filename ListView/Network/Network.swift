@@ -9,31 +9,36 @@
 import Foundation
 
 struct Networking {
-    
+
+    let session: URLSession
+
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
+
     func performNetworkTask<T: Codable>(endpoint: APIList,
                                         type: T.Type, method: String, params: Data?,
-                                        completion: ((_ response: [T]) -> Void)?) {
-        let urlString = endpoint.baseURL.appendingPathComponent(endpoint.path).absoluteString.removingPercentEncoding
-        let session = URLSession.shared
+                                        completion: ((_ response: Result<T, DataResponseError>) -> Void)?) {
+        let urlRequest = URLRequest(url: endpoint.baseURL.appendingPathComponent(endpoint.path))
+        let encodedURLRequest = urlRequest.encode(with: endpoint.paramters)
         
-        guard let urlRequest = URL(string: urlString ?? "") else { return }
-        var request = URLRequest(url: urlRequest)
-        request.httpMethod = method
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let urlSession = session.dataTask(with: encodedURLRequest, completionHandler: { data, response, error in
+            guard
+                let httpResponse = response as? HTTPURLResponse,
+                httpResponse.hasSuccessStatusCode,
+                let data = data
+                else {
+                    completion?(Result.failure(DataResponseError.network))
+                    return
+            }
 
-        let urlSession = session.dataTask(with: request) { (data, _, error) in
-            if error != nil {
-                return
-            }
-            guard let data = data else {
-                return
-            }
             let response = Response(data: data)
             guard let decoded = response.decode(type) else {
+                completion?(Result.failure(DataResponseError.decoding))
                 return
             }
-            completion?(decoded)
-        }
+            completion?(Result.success(decoded))
+        })
         urlSession.resume()
     }
 }
