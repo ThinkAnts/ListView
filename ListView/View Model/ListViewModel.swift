@@ -8,13 +8,23 @@
 
 import Foundation
 
-class ListViewModel {
+protocol ListViewModelDelegate: class {
+    func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?)
+    func onFetchFailed(with reason: String)
+}
+
+final class ListViewModel {
+    private weak var delegate: ListViewModelDelegate?
     private let networking = Networking()
     private var currentPage = 1
     private var total = 0
     private var isFetchInProgress = false
     private var moderators: [Moderator] = []
 
+    init(delegate: ListViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
     var totalCount: Int {
         return total
     }
@@ -33,34 +43,40 @@ class ListViewModel {
         }
         isFetchInProgress = true
         networking.performNetworkTask(endpoint: APIList.allModerators(moderators: prepareRequestParams()), type: Moderators.self, method: "", params: nil) { response in
-            print(response)
             switch response {
-            // 3
             case .failure(let error):
-                    self.isFetchInProgress = false
+                DispatchQueue.main.async {
+                self.isFetchInProgress = false
+                self.delegate?.onFetchFailed(with: error.reason)
+                }
             case .success(let response):
+                DispatchQueue.main.async {
                     self.currentPage += 1
                     self.isFetchInProgress = false
                     self.total = response.total
                     self.moderators.append(contentsOf: response.moderators)
-//                    
-//                    // 3
-//                    if response.page > 1 {
-//                        let indexPathsToReload = self.calculateIndexPathsToReload(from: response.moderators)
-//                        self.delegate?.onFetchCompleted(with: indexPathsToReload)
-//                    } else {
-//                        self.delegate?.onFetchCompleted(with: .none)
-//                    }
+                    if response.page > 1 {
+                        let indexPathsToReload = self.calculateIndexPathsToReload(from: response.moderators)
+                        self.delegate?.onFetchCompleted(with: indexPathsToReload)
+                    } else {
+                        self.delegate?.onFetchCompleted(with: .none)
+                    }
+                }
             }
-
             completion?()
         }
     }
-    
+
     private func prepareRequestParams() -> ModeratorParams {
         var params = ModeratorParams()
         params.pageCount = "1"
         params.site = "StackOverflow"
         return params
+    }
+
+    private func calculateIndexPathsToReload(from newModerators: [Moderator]) -> [IndexPath] {
+        let startIndex = moderators.count - newModerators.count
+        let endIndex = startIndex + newModerators.count
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
 }

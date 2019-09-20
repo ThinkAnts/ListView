@@ -44,6 +44,46 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3li-iN-XzZ">
                                 <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="List" id="98l-yi-IEJ" customClass="ListViewCell" customModule="ListView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="98l-yi-IEJ" id="XnQ-6W-GXu">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWh-Xm-Ohr">
+                                                    <rect key="frame" x="10" y="11.5" width="105" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reputation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cop-JL-zed">
+                                                    <rect key="frame" x="316" y="11.5" width="83" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cop-JL-zed" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JWh-Xm-Ohr" secondAttribute="trailing" constant="8" symbolic="YES" id="8sO-xl-SM5"/>
+                                                <constraint firstItem="JWh-Xm-Ohr" firstAttribute="leading" secondItem="XnQ-6W-GXu" secondAttribute="leading" constant="10" id="KLV-9V-7kV"/>
+                                                <constraint firstAttribute="trailing" secondItem="cop-JL-zed" secondAttribute="trailing" constant="15" id="cHH-gP-8hg"/>
+                                                <constraint firstItem="cop-JL-zed" firstAttribute="centerY" secondItem="XnQ-6W-GXu" secondAttribute="centerY" id="mp2-yK-HFh"/>
+                                                <constraint firstItem="JWh-Xm-Ohr" firstAttribute="centerY" secondItem="XnQ-6W-GXu" secondAttribute="centerY" id="neE-ja-dhD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="displayNameLabel" destination="JWh-Xm-Ohr" id="5fg-pY-rAa"/>
+                                            <outlet property="reputationLabel" destination="cop-JL-zed" id="msK-Fn-Pj7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="nhA-gS-Bc1"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7dF-QY-Yad"/>
+                                    <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="uyu-EZ-O1u"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,6 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
         </scene>
     </scenes>
 </document>

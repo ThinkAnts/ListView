@@ -15,9 +15,12 @@ enum ActivityState {
     case loadingRemote
 }
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, DisplayAlert {
+    private enum CellIdentifiers {
+        static let list = "List"
+    }
     var reachability: Reachability!
-    private var listViewModel =  ListViewModel()
+    private var listViewModel: ListViewModel!
     @IBOutlet weak var tableViewTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -32,7 +35,7 @@ class ListViewController: UIViewController {
                     self.activityLabel.text = ""
                     UIView.animate(withDuration: 0.50) {
                         self.tableViewTopSpaceConstraint.constant = 0.0
-                        self.view.layoutIfNeeded()
+                        //self.view.layoutIfNeeded()
                     }
                 }
             default:
@@ -40,7 +43,7 @@ class ListViewController: UIViewController {
                 self.activityLabel.text = state == .loadingLocal ? "Loading data from cache" : "Downloading data from server"
                 UIView.animate(withDuration: 0.50) {
                     self.tableViewTopSpaceConstraint.constant = 60.0
-                    self.view.layoutIfNeeded()
+                    //self.view.layoutIfNeeded()
                 }
             }
         }
@@ -50,6 +53,7 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         self.reachability = Reachability()
         self.state = .loadingLocal
+        listViewModel = ListViewModel(delegate: self)
         fetchModerators()
     }
     
@@ -65,10 +69,49 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return listViewModel.totalCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.list, for: indexPath) as! ListViewCell
+        if isLoadingCell(for: indexPath) {
+            cell.configure(with: .none)
+        } else {
+            cell.configure(with: listViewModel.moderator(at: indexPath.row))
+        }
+        return cell
+    }
+}
+
+private extension ListViewController {
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= listViewModel.currentCount
+    }
+    
+    func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
+        let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
+        let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
+        return Array(indexPathsIntersection)
+    }
+}
+
+extension ListViewController: ListViewModelDelegate {
+    func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
+        // 1
+        guard let newIndexPathsToReload = newIndexPathsToReload else {
+            //indicatorView.stopAnimating()
+            tableView.isHidden = false
+            tableView.reloadData()
+            return
+        }
+        let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+        tableView.reloadRows(at: indexPathsToReload, with: .automatic)
+    }
+    
+    func onFetchFailed(with reason: String) {
+        //indicatorView.stopAnimating()
+        let title = "Warning".localizedString
+        let action = UIAlertAction(title: "OK".localizedString, style: .default)
+        displayAlert(with: title , message: reason, actions: [action])
     }
 }
