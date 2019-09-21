@@ -12,8 +12,6 @@ class ListViewCell: UITableViewCell {
 
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var reputationLabel: UILabel!
-   // @IBOutlet var reputationContainerView: UIView!
-    //@IBOutlet var indicatorView: UIActivityIndicatorView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -29,8 +27,10 @@ class ListViewCell: UITableViewCell {
             displayNameLabel?.text = moderator.displayName
             reputationLabel?.text = moderator.reputation
             displayNameLabel.alpha = 1
+            reputationLabel.alpha = 1
         } else {
             displayNameLabel.alpha = 0
+            reputationLabel.alpha = 0
         }
     }
 

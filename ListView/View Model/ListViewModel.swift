@@ -69,7 +69,7 @@ final class ListViewModel {
 
     private func prepareRequestParams() -> ModeratorParams {
         var params = ModeratorParams()
-        params.pageCount = "1"
+        params.pageCount = String(currentPage)
         params.site = "StackOverflow"
         return params
     }

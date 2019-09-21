@@ -35,7 +35,7 @@ class ListViewController: UIViewController, DisplayAlert {
                     self.activityLabel.text = ""
                     UIView.animate(withDuration: 0.50) {
                         self.tableViewTopSpaceConstraint.constant = 0.0
-                        //self.view.layoutIfNeeded()
+                        self.view.layoutIfNeeded()
                     }
                 }
             default:
@@ -52,7 +52,7 @@ class ListViewController: UIViewController, DisplayAlert {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reachability = Reachability()
-        self.state = .loadingLocal
+        self.state = .loadingRemote
         listViewModel = ListViewModel(delegate: self)
         fetchModerators()
     }
@@ -81,6 +81,11 @@ extension ListViewController: UITableViewDataSource {
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0
+    }
+    
 }
 
 private extension ListViewController {
@@ -95,11 +100,17 @@ private extension ListViewController {
     }
 }
 
+extension ListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLoadingCell) {
+            fetchModerators()
+        }
+    }
+}
+
 extension ListViewController: ListViewModelDelegate {
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
-        // 1
         guard let newIndexPathsToReload = newIndexPathsToReload else {
-            //indicatorView.stopAnimating()
             tableView.isHidden = false
             tableView.reloadData()
             return
@@ -109,7 +120,6 @@ extension ListViewController: ListViewModelDelegate {
     }
     
     func onFetchFailed(with reason: String) {
-        //indicatorView.stopAnimating()
         let title = "Warning".localizedString
         let action = UIAlertAction(title: "OK".localizedString, style: .default)
         displayAlert(with: title , message: reason, actions: [action])
