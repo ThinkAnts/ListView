@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class YoutubeTableViewCell: UITableViewCell {
 
@@ -20,5 +22,13 @@ class YoutubeTableViewCell: UITableViewCell {
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2;
         userImageView.clipsToBounds = true;
         playerView.backgroundColor = UIColor.black
+    }
+    
+    func setup() {
+        titleLabel.text = "Big Buck Bunndy Video"
+        guard let videoUrl = URL(string:"https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4") else { return }
+        let avPlayer = AVPlayer(url: videoUrl)
+        playerView?.playerLayer.frame = self.frame
+        playerView?.playerLayer.player = avPlayer
     }
 }

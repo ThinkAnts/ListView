@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import AVFoundation
-import AVKit
+
 
 class YoutubeViewController: UIViewController {
     private enum CellIdentifiers {
@@ -22,6 +21,7 @@ class YoutubeViewController: UIViewController {
     }
     
     func setup() {
+        self.title = "Youtube".localizedString
         youtubeTableView.register(UINib.init(nibName: "YoutubeTableViewCell", bundle: Bundle.main),
                                   forCellReuseIdentifier: CellIdentifiers.youtube)
     }
@@ -48,11 +48,7 @@ extension YoutubeViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.youtube, for: indexPath) as? YoutubeTableViewCell else {
             return UITableViewCell()
         }
-        cell.titleLabel.text = "Big Buck Bunndy Video"
-        guard let videoUrl = URL(string:"https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4") else { return UITableViewCell() }
-        let avPlayer = AVPlayer(url: videoUrl)
-        cell.playerView?.playerLayer.frame = cell.frame
-        cell.playerView?.playerLayer.player = avPlayer
+        cell.setup()
         return cell
     }
     

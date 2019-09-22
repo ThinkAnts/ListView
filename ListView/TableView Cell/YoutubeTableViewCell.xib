@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-hS-LbF" customClass="PlayerView" customModule="ListView" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="20" width="320" height="160"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHX-AW-iuA">
@@ -50,18 +50,28 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xsg-H1-sh3" userLabel="Title View">
                                         <rect key="frame" x="80" y="0.0" width="240" height="110.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to play youtube video from URL in custom UIView iOS - swift code" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyS-eU-PnA">
-                                                <rect key="frame" x="5" y="28.5" width="230" height="54"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to play youtube video from " textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyS-eU-PnA">
+                                                <rect key="frame" x="5" y="27.5" width="230" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Gear - 6.3M views - 4 weeks ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ish-UZ-zet">
+                                                <rect key="frame" x="5" y="50.5" width="230" height="47.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="HyS-eU-PnA" firstAttribute="centerY" secondItem="Xsg-H1-sh3" secondAttribute="centerY" id="9EN-h0-bot"/>
+                                            <constraint firstItem="Ish-UZ-zet" firstAttribute="leading" secondItem="Xsg-H1-sh3" secondAttribute="leading" constant="5" id="2ez-Hs-LRW"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ish-UZ-zet" secondAttribute="trailing" constant="5" id="8Nm-3x-0Az"/>
+                                            <constraint firstItem="HyS-eU-PnA" firstAttribute="centerY" secondItem="Xsg-H1-sh3" secondAttribute="centerY" constant="-18.75" id="9EN-h0-bot"/>
                                             <constraint firstItem="HyS-eU-PnA" firstAttribute="leading" secondItem="Xsg-H1-sh3" secondAttribute="leading" constant="5" id="O19-Vg-kOd"/>
+                                            <constraint firstItem="Ish-UZ-zet" firstAttribute="top" secondItem="HyS-eU-PnA" secondAttribute="bottom" constant="5" id="RJm-io-SQu"/>
                                             <constraint firstAttribute="trailing" secondItem="HyS-eU-PnA" secondAttribute="trailing" constant="5" id="g5g-ZN-313"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ish-UZ-zet" secondAttribute="bottom" constant="12.5" id="rpa-pa-YNi"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -94,7 +104,7 @@
                     <constraint firstItem="b8R-hS-LbF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Uw7-ci-vIe"/>
                     <constraint firstItem="IHX-AW-iuA" firstAttribute="top" secondItem="b8R-hS-LbF" secondAttribute="bottom" id="Wkp-79-AEs"/>
                     <constraint firstItem="IHX-AW-iuA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="e1b-Ot-nha"/>
-                    <constraint firstItem="b8R-hS-LbF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="eF6-vi-Uhr"/>
+                    <constraint firstItem="b8R-hS-LbF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eF6-vi-Uhr"/>
                     <constraint firstAttribute="bottom" secondItem="IHX-AW-iuA" secondAttribute="bottom" id="oe6-m2-sfE"/>
                     <constraint firstItem="b8R-hS-LbF" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="wLv-YU-rDB"/>
                 </constraints>
