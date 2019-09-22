@@ -57,17 +57,13 @@ extension YoutubeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //guard let videoCell = (cell as? YoutubeTableViewCell) else { return }
-//        let visibleCells = tableView.visibleCells
-//        let minIndex = visibleCells.startIndex
-//        if tableView.indexPathsForVisibleRows?.first?.row == minIndex {
-//            videoCell.playerView.player?.play()
-//        }
-        let middleIndex = ((tableView.indexPathsForVisibleRows?.first?.row)! + (tableView.indexPathsForVisibleRows?.last?.row)!)/2
-        if indexPath.row == middleIndex {
-            guard let cell = tableView.cellForRow(at: indexPath) as? YoutubeTableViewCell else {return }
-            cell.playerView.player?.play()
-        }
+        guard let videoCell = (cell as? YoutubeTableViewCell) else { return }
+          let visibleCells = tableView.visibleCells
+          let minIndex = visibleCells.startIndex
+          if tableView.indexPathsForVisibleRows?.first?.row == minIndex {
+             videoCell.playerView.player?.play()
+             videoCell.playerView.player?.isMuted = true
+         }
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
