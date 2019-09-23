@@ -34,6 +34,7 @@ class VideoLauncher: NSObject {
                                    animations: {
                                     videoPlayerView.frame.size.height = 100
                                     videoPlayerView.frame.size.width = keyWindow.frame.size.width
+                                    videoPlayerView.isPlaying = false
                                     self.mainView.frame = CGRect(x: 0, y: keyWindow.frame.height - 150, width: keyWindow.frame.size.width, height: 50)
                     }) { (completedAnimation) in
                         guard let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView else { return }

@@ -10,10 +10,12 @@ import UIKit
 
 
 class YoutubeViewController: UIViewController {
+
     private enum CellIdentifiers {
         static let youtube = "Youtube"
     }
     @IBOutlet weak var youtubeTableView: UITableView!
+    private var youtubeViewModel: YoutubeModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ class YoutubeViewController: UIViewController {
         self.title = "Youtube".localizedString
         youtubeTableView.register(UINib.init(nibName: "YoutubeTableViewCell", bundle: Bundle.main),
                                   forCellReuseIdentifier: CellIdentifiers.youtube)
+        youtubeViewModel = YoutubeModel(delegate: self)
     }
 
     /*
@@ -41,7 +44,7 @@ class YoutubeViewController: UIViewController {
 extension YoutubeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return youtubeViewModel.totalCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,4 +80,12 @@ extension YoutubeViewController: UITableViewDataSource, UITableViewDelegate {
         videoLauncher.showVideoPlayer()
     }
     
+}
+
+extension YoutubeViewController: YoutubeModelDelegate {
+    func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
+    }
+    
+    func onFetchFailed(with reason: String) {
+    }
 }
