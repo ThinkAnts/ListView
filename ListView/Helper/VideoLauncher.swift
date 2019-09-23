@@ -30,7 +30,15 @@ class VideoLauncher: NSObject {
                 guard let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView else { return }
                 statusBar.isHidden = true
                 videoPlayerView.updateFavourite = { 
-                    // minimise the view.
+                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut,
+                                   animations: {
+                                    videoPlayerView.frame.size.height = 100
+                                    videoPlayerView.frame.size.width = keyWindow.frame.size.width
+                                    self.mainView.frame = CGRect(x: 0, y: keyWindow.frame.height - 150, width: keyWindow.frame.size.width, height: 50)
+                    }) { (completedAnimation) in
+                        guard let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView else { return }
+                        statusBar.isHidden = true
+                    }
                 }
                 }
             }
