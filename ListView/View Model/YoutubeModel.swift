@@ -24,4 +24,9 @@ final class YoutubeModel {
     init(delegate: YoutubeModelDelegate) {
         self.delegate = delegate
     }
+    
+    func showVideoView() {
+        let videoLauncher = VideoLauncher()
+        videoLauncher.showVideoPlayer()
+    }
 }

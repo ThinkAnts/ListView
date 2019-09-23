@@ -76,8 +76,7 @@ extension YoutubeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let videoLauncher = VideoLauncher()
-        videoLauncher.showVideoPlayer()
+        youtubeViewModel.showVideoView()
     }
     
 }
