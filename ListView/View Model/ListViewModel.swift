@@ -25,10 +25,11 @@ final class ListViewModel {
         self.delegate = delegate
     }
     
-    var totalCount: Int {
-        return total
-    }
+//    var totalCount: Int {
+//        return total
+//    }
 
+    var totalCount: Box<Int> = Box(0)
     var currentCount: Int {
         return moderators.count
     }
@@ -53,7 +54,8 @@ final class ListViewModel {
                 DispatchQueue.main.async {
                     self.currentPage += 1
                     self.isFetchInProgress = false
-                    self.total = response.total
+                    //self.total = response.total
+                    self.totalCount.value = response.total
                     self.moderators.append(contentsOf: response.moderators)
                     if response.page > 1 {
                         let indexPathsToReload = self.calculateIndexPathsToReload(from: response.moderators)

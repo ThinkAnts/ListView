@@ -16,7 +16,8 @@ class YoutubeViewController: UIViewController {
     }
     @IBOutlet weak var youtubeTableView: UITableView!
     private var youtubeViewModel: YoutubeModel!
-
+    var videoLauncher = VideoLauncher()
+    var panGesture = UIPanGestureRecognizer()
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -27,17 +28,17 @@ class YoutubeViewController: UIViewController {
         youtubeTableView.register(UINib.init(nibName: "YoutubeTableViewCell", bundle: Bundle.main),
                                   forCellReuseIdentifier: CellIdentifiers.youtube)
         youtubeViewModel = YoutubeModel(delegate: self)
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.draggedView(_:)))
+        videoLauncher.mainView.isUserInteractionEnabled = true
+        videoLauncher.mainView.addGestureRecognizer(panGesture)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func draggedView(_ sender:UIPanGestureRecognizer){
+        self.view.bringSubviewToFront(videoLauncher.mainView)
+        let translation = sender.translation(in: self.view)
+        videoLauncher.mainView.center = CGPoint(x: videoLauncher.mainView.center.x + translation.x, y: videoLauncher.mainView.center.y + translation.y)
+        sender.setTranslation(CGPoint.zero, in: self.view)
     }
-    */
 
 }
 
@@ -76,7 +77,9 @@ extension YoutubeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        youtubeViewModel.showVideoView()
+        //youtubeViewModel.showVideoView()
+        videoLauncher.showVideoPlayer()
+
     }
     
 }

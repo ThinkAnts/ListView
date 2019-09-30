@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class VideoLauncher: NSObject {
-    private var mainView: UIView!
+    var mainView = UIView()
     func showVideoPlayer() {
         if let keyWindow = UIApplication.shared.keyWindow {
             mainView = UIView(frame: keyWindow.frame)
